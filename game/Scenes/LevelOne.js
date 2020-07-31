@@ -38,9 +38,8 @@ class LevelOne extends GameScene {
   }
 
   killPlayer(player, enemy){
-    this.resetPlayerPosition(player);
+    this.kill(player);
     enemy.destroy();
-    this.subtractLives();
   }
 
 

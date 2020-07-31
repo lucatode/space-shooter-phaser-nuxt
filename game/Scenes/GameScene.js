@@ -63,9 +63,15 @@ class GameScene extends Phaser.Scene {
     // context.ship.setInteractive();
   }
 
-  resetPlayerPosition(player){
-    player.x = gameConfig.width / 2 - 8;
-    player.y = gameConfig.height - 64
+  kill(player){
+
+    this.time.addEvent({
+      delay: 500,
+      callback: ()=>{
+        player.x = gameConfig.width / 2 - 8;
+        player.y = gameConfig.height - 64
+      }
+    })
   }
 
   subtractLives(){console.log('-1 life')}

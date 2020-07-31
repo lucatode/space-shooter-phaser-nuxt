@@ -1,9 +1,9 @@
 import Phaser from 'phaser'
 
 import { gameConfig } from '~/game/game-config';
-import { parseColor } from '~/game/parse-color'
-import GameScene from "./Scenes/GameScene";
+
 import LevelOne from "./Scenes/LevelOne";
+import BootScene from "./Scenes/BootScene";
 
 export const createGame = (parent, store) => {
 
