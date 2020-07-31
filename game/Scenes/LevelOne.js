@@ -32,9 +32,10 @@ class LevelOne extends GameScene {
   }
 
   spawnEnemies() {
-    if(this.enemies.getLength() == 0){
+    if(this.enemies.getLength() < 5){
       let enemy = new Enemy(this);
-      enemy.setRandomPosition(0, 0, gameConfig.width, 0);
+      let column = Math.floor(Math.random() * 16);
+      enemy.setPosition((48*column)+24,0);
       this.enemies.add(enemy);
     }
   }

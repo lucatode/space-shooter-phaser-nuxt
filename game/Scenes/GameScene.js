@@ -14,7 +14,7 @@ class GameScene extends SpaceBackgroundGameScene{
     super.preload();
     this.load.spritesheet('player', 'player.png', {frameWidth:16, frameHeight:16})
     this.load.spritesheet('beam', 'beam.png', {frameWidth:16, frameHeight:16})
-    this.load.spritesheet('enemy', 'ship.png', {frameWidth:16, frameHeight:16})
+    this.load.spritesheet('enemy', 'ship.png', {frameWidth:48, frameHeight:48})
     this.load.spritesheet('player_explosion', 'player_explosion.png', {frameWidth:16, frameHeight:16})
     this.load.spritesheet('enemy_explosion', 'enemy_explosion.png', {frameWidth:16, frameHeight:16})
     this.load.spritesheet('projectile_explosion', 'projectile_explosion.png', {frameWidth:16, frameHeight:16})
