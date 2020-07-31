@@ -2,6 +2,8 @@ import {gameConfig} from "../game-config";
 import Projectile from "./Projectile";
 
 class Player extends Phaser.GameObjects.Sprite{
+  canShoot = true;
+
   constructor(scene, x, y) {
 
     super(scene, x, y, "player");
@@ -11,6 +13,7 @@ class Player extends Phaser.GameObjects.Sprite{
     this.play("player_anim");
     scene.physics.world.enableBody(this);
 
+    this.setScale(3)
   }
 
 
@@ -31,8 +34,8 @@ class Player extends Phaser.GameObjects.Sprite{
       context.player.body.velocity.y =(0)
     }
 
-    if(Phaser.Input.Keyboard.JustDown(context.spacebar)){
-      createProjectile(context.player.body.x, context.player.body.y)
+    if(this.canShoot && Phaser.Input.Keyboard.JustDown(context.spacebar)){
+      createProjectile(context.player.body.x+16, context.player.body.y)
     }
 
   }

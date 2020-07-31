@@ -12,7 +12,7 @@ class Enemy extends Phaser.GameObjects.Sprite{
     this.body.velocity.y = 250;
 
     scene.enemies.add(this);
-
+    this.setScale(3)
   }
 
 

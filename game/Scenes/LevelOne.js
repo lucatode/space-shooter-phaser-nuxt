@@ -17,6 +17,8 @@ class LevelOne extends GameScene {
     this.physics.add.overlap(this.projectiles, this.enemies, (projectile, enemy) => {
       projectile.destroy();
       enemy.destroy();
+      this.enemyExplosion(enemy);
+      this.projectileExplosion(projectile);
     }, null, this);
 
     this.physics.add.overlap(this.player, this.enemies, this.killPlayer, null, this);
@@ -40,9 +42,35 @@ class LevelOne extends GameScene {
   killPlayer(player, enemy){
     this.kill(player);
     enemy.destroy();
+    this.enemyExplosion(enemy);
   }
 
 
+  enemyExplosion(enemy) {
+    var explosion = this.add.sprite(enemy.x, enemy.y, "enemy_explosion");
+    explosion.setScale(2)
+    explosion.play('anim_enemy_explode')
+    this.time.addEvent({
+      delay: 200,
+      callback: () => {
+        explosion.destroy();
+
+      }
+    })
+  }
+
+  projectileExplosion(projectile){
+    var explosion = this.add.sprite(projectile.x, projectile.y, "projectile_explosion");
+    explosion.setScale(2)
+    explosion.play('anim_projectile_explode')
+    this.time.addEvent({
+      delay: 200,
+      callback: () => {
+        explosion.destroy();
+
+      }
+    })
+  }
 }
 
 export default LevelOne;
