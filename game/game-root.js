@@ -8,7 +8,7 @@ import GameScene from "./Scenes/GameScene";
 
 export const createGame = (parent, store) => {
 
-  const scene = [GameScene]
+  const scene = [LevelOne]
 
   return new Phaser.Game({
     ...gameConfig,

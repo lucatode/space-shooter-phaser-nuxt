@@ -1,6 +1,6 @@
 class Projectile extends Phaser.GameObjects.Sprite{
   constructor(scene,x,y) {
-    super(scene, x, y-16, "beam");
+    super(scene, x+8, y-16, "beam");
 
     scene.add.existing(this);
 

@@ -12,9 +12,9 @@ class GameScene extends SpaceBackgroundGameScene{
 
   preload(){
     super.preload();
-    this.load.spritesheet('player', 'ship.png', {frameWidth:16, frameHeight:16})
+    this.load.spritesheet('player', 'player.png', {frameWidth:16, frameHeight:16})
     this.load.spritesheet('beam', 'beam.png', {frameWidth:16, frameHeight:16})
-    // this.load.spritesheet('enemy', 'player.png', {frameWidth:16, frameHeight:16})
+    this.load.spritesheet('enemy', 'ship.png', {frameWidth:16, frameHeight:16})
 
   }
 
@@ -32,14 +32,13 @@ class GameScene extends SpaceBackgroundGameScene{
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     this.projectiles = this.add.group();
-    // this.enemies = this.add.group();
+    this.enemies = this.add.group();
   }
 
   update(time, delta) {
     super.update(time, delta);
-    this.player.update(this, gameConfig);
-    //
-    // this.projectiles.getChildren().forEach(projectile => projectile.update())
+    this.player.update(this, gameConfig, (x,y) => { new Projectile(this, x,y)});
+    this.projectiles.getChildren().forEach(projectile => projectile.update())
   }
 
   createPlayer(context){
@@ -52,27 +51,17 @@ class GameScene extends SpaceBackgroundGameScene{
     context.player = new Player(context, gameConfig.width / 2 - 8, gameConfig.height - 64)
   }
 
-  createShip(context) {
-    this.anims.create({
-      key: "ship_anim",
-      frames: this.anims.generateFrameNumbers("ship"),
-      frameRate: 20,
-      repeat: -1
-    });
-    context.ship = context.physics.add.sprite(gameConfig.width / 2 - 8, gameConfig.height - 64, 'ship');
-    context.ship.setCollideWorldBounds(true);
-    context.ship.setScale(3);
-    context.ship.play('ship_anim');
-    // context.ship.setInteractive();
-  }
-
-  kill(player){
-
+  kill(player, context){
+    console.log('dead')
+    player.setActive(false).setVisible(false)
     this.time.addEvent({
       delay: 500,
       callback: ()=>{
+        console.log('respawn')
+        player.setActive(true).setVisible(true)
         player.x = gameConfig.width / 2 - 8;
         player.y = gameConfig.height - 64
+
       }
     })
   }

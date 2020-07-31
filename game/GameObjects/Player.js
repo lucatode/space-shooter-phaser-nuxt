@@ -14,7 +14,7 @@ class Player extends Phaser.GameObjects.Sprite{
   }
 
 
-  update(context, config){
+  update(context, config, createProjectile){
     if(context.cursorKeys.left.isDown){
       context.player.body.velocity.x = (-config.playerSpeed)
     }else if(context.cursorKeys.right.isDown){
@@ -32,10 +32,12 @@ class Player extends Phaser.GameObjects.Sprite{
     }
 
     if(Phaser.Input.Keyboard.JustDown(context.spacebar)){
-      var beam = new Projectile(context.scene, this.body.x, this.body.y)
+      createProjectile(context.player.body.x, context.player.body.y)
     }
 
   }
+
+
 }
 
 export default Player;

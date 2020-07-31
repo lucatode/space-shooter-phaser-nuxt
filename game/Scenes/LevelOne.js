@@ -19,7 +19,7 @@ class LevelOne extends GameScene {
       enemy.destroy();
     }, null, this);
 
-    this.physics.add.overlap(this.ship, this.enemies, this.killPlayer, null, this);
+    this.physics.add.overlap(this.player, this.enemies, this.killPlayer, null, this);
 
   }
 
