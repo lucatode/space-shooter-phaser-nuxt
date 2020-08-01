@@ -35,7 +35,7 @@ class Player extends Phaser.GameObjects.Sprite{
     }
 
     if(this.canShoot && Phaser.Input.Keyboard.JustDown(context.spacebar)){
-      createProjectile(context.player.body.x+16, context.player.body.y)
+      createProjectile(context.player.body.x+30, context.player.body.y)
     }
 
   }

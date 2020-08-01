@@ -12,7 +12,7 @@ class GameScene extends SpaceBackgroundGameScene{
 
   preload(){
     super.preload();
-    this.load.spritesheet('player', 'player.png', {frameWidth:16, frameHeight:16})
+    this.load.spritesheet('player', 'tempest_white_24.png', {frameWidth:24, frameHeight:24})
     this.load.spritesheet('beam', 'beam.png', {frameWidth:16, frameHeight:16})
     this.load.spritesheet('enemy', 'ship.png', {frameWidth:48, frameHeight:48})
     this.load.spritesheet('player_explosion', 'player_explosion.png', {frameWidth:16, frameHeight:16})
@@ -23,8 +23,8 @@ class GameScene extends SpaceBackgroundGameScene{
 
   create(){
     super.create();
-    this.createPlayer(this);
     this.createAnimations(this);
+    this.createPlayer(this);
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -48,7 +48,7 @@ class GameScene extends SpaceBackgroundGameScene{
     context.anims.create({
       key: "player_anim",
       frames: context.anims.generateFrameNumbers("player"),
-      frameRate: 20,
+      frameRate: 10,
       repeat: -1
     });
 
