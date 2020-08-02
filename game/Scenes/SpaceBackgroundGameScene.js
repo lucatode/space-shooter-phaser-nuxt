@@ -9,26 +9,30 @@ class SpaceBackgroundGameScene extends Phaser.Scene {
 
 
   preload() {
-    this.load.spritesheet('sky', 'BackgroundSprite_blue_II.png', {frameWidth:768, frameHeight:800})
+    this.load.image('sky', 'TransparentGrid.png')
+    this.load.image('skylineII', 'SynthwaveSkylineTransparent_II.png')
   }
 
   create() {
     this.physics.world.setBoundsCollision();
-    this.background = this.add.sprite(0, 0,gameConfig.width, gameConfig.height, 'sky');
+    this.background = this.add.tileSprite(0, 0,gameConfig.width, gameConfig.height, 'sky');
+    this.skyline = this.add.image(768/2, 140, 'skylineII');
     this.background.setOrigin(0,0);
-
-    this.anims.create({
-      key: "sky_anim",
-      frames: this.anims.generateFrameNumbers("sky"),
-      frameRate: 3,
-      repeat: -1
-    });
-
-    this.background.play('sky_anim')
+    var shape = this.make.graphics({x:0,y:0});
+    shape.fillRect(0, 0, 768, 200);
+    var mask = shape.createGeometryMask();
+    mask.setInvertAlpha();
+    this.background.setMask(mask);
+    this.scrollPosition = this.background.tilePositionY;
   }
 
   update(time, delta) {
-    // this.background.tilePositionY -= 0.5
+    let number = 20;
+    if(this.background.tilePositionY - this.scrollPosition  === number){
+      this.background.tilePositionY -= number
+    }else{
+      this.background.tilePositionY += 1
+    }
   }
 
 }

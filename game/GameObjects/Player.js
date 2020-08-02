@@ -5,7 +5,7 @@ class Player extends Phaser.GameObjects.Sprite{
   canShoot = true;
 
   constructor(scene, x, y) {
-
+    console.log(x,y)
     super(scene, x, y, "player");
 
     scene.add.existing(this);
@@ -13,7 +13,6 @@ class Player extends Phaser.GameObjects.Sprite{
     this.play("player_anim");
     scene.physics.world.enableBody(this);
 
-    this.setScale(3)
   }
 
 
